@@ -1,8 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>netcoreapp2.0;net461;</TargetFrameworks>
     <RootNamespace>RazorEmailCore</RootNamespace>
+    <AssemblyName>RazorEmailCore</AssemblyName>
+    <Version>1.1.0</Version>
+    <Authors>Nate Zaugg</Authors>
+    <Company>Mindfire Technology</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

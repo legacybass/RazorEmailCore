@@ -1,23 +1,70 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Merges Razor templates into emails that can be sent easily</Description>
-    <Copyright>2016 - Mindfire Technology</Copyright>
-    <AssemblyTitle>RazorEmailCore</AssemblyTitle>
-    <VersionPrefix>1.0.3</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
-    <AssemblyName>RazorEmailCore</AssemblyName>
-    <PackageId>RazorEmailCore</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+	<Description>Merges Razor templates into emails that can be sent easily</Description>
+	<Copyright>2016 - Mindfire Technology</Copyright>
+	<AssemblyTitle>RazorEmailCore_Test</AssemblyTitle>
+	<AssemblyName>RazorEmailCore_Test</AssemblyName>
+	<PackageId>RazorEmailCore_Test</PackageId>
+	  <Authors>Nate Zaugg</Authors>
+	  <Company>Mindfire Technology</Company>
+	  <Version>1.1.9</Version>
+	  <PackageLicenseUrl>https://github.com/MindfireTechnology/RazorEmailCore/blob/master/LICENSE</PackageLicenseUrl>
+	  <PackageProjectUrl>https://github.com/MindfireTechnology/RazorEmailCore</PackageProjectUrl>
+	  <PackageIconUrl>https://avatars3.githubusercontent.com/u/13372702</PackageIconUrl>
+	  <RepositoryUrl>https://github.com/MindfireTechnology/RazorEmailCore</RepositoryUrl>
+	  <PackageTags>Razor, Email, dotnet core</PackageTags>
+	  <PackageReleaseNotes>Updated to support .NET Standard 2.0</PackageReleaseNotes>
+	<TargetFrameworks>netstandard1.6;netcoreapp2.0;net461</TargetFrameworks>
+	<!--<PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>-->
+	<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+	<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+	<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
-    <PackageReference Include="RazorLight" Version="1.1.0" />
+	  <Compile Remove="RazorMessageGenerator.cs" />
+	  <Compile Remove="RazorMessageGenerator2.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+	<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+	<PackageReference Include="System.Net.Primitives" Version="4.3.0" />
+	  <PackageReference Include="System.Collections" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Diagnostics.Debug" Version="[4.3.0, )" />
+	  <PackageReference Include="System.IO.FileSystem" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Linq" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Net.Primitives" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Net.Sockets" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Reflection" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Reflection.TypeExtensions" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Resources.ResourceManager" Version="[4.3.0, )" />
+	  <PackageReference Include="System.Runtime" Version="4.3.0" />
+	  <PackageReference Include="System.Runtime.Extensions" Version="4.3.0" />
+	  <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+	  <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+	  <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+	  <PackageReference Include="System.Threading.Tasks" Version="4.3.0" />
+  </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp2.0' OR '$(TargetFramework)'=='net461'">
+		<Compile Include="RazorMessageGenerator2.cs" />
+
+		<PackageReference Include="NETStandard.Library" Version="[2.0.0, )" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Host" Version="1.1.7" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="2.8.2" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+		<PackageReference Include="Microsoft.Extensions.DiagnosticAdapter" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard1.6'">
+		<Compile Include="RazorMessageGenerator.cs" />
+
+		<PackageReference Include="NETStandard.Library" Version="1.6.1" />
+		<PackageReference Include="RazorLight" Version="1.1.0" />
+	</ItemGroup>
 </Project>
